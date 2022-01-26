@@ -1,38 +1,26 @@
 const express = require('express')
+
+
 const colors = require('colors')
+const messageRouter = require('./routes/messages.router')
+const friendsRouter = require('./routes/friends.router')
 
 const app = express()
 
 const PORT = 3000
 
-const friends = new Array(
-	{ id: 0, name: 'Sir Issac Newton' },
-	{ id: 1, name: 'King Kong' }
-)
-
 app.use((req, res, next) => {
 	const startTime = Date.now()
-	console.log(`${req.method} and ${req.url} @ ${startTime}`)
 	next()
-    const delta = Date.now() - startTime
-    console.log(delta)
+	const delta = Date.now() - startTime
+	console.log(`${req.method} and "${req.baseUrl}" ${req.url} @ ${delta}ms`)
 })
 
-app.get('/friends', (req, res) => {
-	res.json(friends)
-})
+app.use(express.json())
 
-app.get('/friends/:friendId', (req, res) => {
-	const friendId = Number(req.params.friendId)
-	const friend = friends[friendId]
-	if (friend) {
-		res.json(friend)
-	} else {
-		res.status(404).json({
-			error: `friend doesn't exsit`,
-		})
-	}
-})
+app.use('/friends', friendsRouter)
+app.use('/messages', messageRouter)
+
 
 app.listen(PORT, () =>
 	console.log(
