@@ -20,7 +20,8 @@
   "homepage": "https://github.com/xxvxxr/octo-spork#readme",
   "dependencies": {
     "colors": "^1.4.0",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "hbs": "^4.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
