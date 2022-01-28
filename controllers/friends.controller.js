@@ -26,7 +26,7 @@ function GetFriendById (req, res) {
 	const friendId = Number(req.params.friendId)
 	const friend = model[friendId]
 	if (friend) {
-		res.json(friend)
+		res.status(200).json(friend)
 	} else {
 		res.status(418).json({
 			error: `friend doesn't exist`,

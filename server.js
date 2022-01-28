@@ -8,10 +8,10 @@ const friendsRouter = require('./routes/friends.router')
 
 const app = express()
 
-const PORT = 3000
 
 app.set('view engine', 'hbs')
 app.set('views',path.join(__dirname, 'views') )
+const PORT = 3000
 
 app.use((req, res, next) => {
 	const startTime = Date.now()
